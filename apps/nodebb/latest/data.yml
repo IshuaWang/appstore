@@ -1,10 +1,65 @@
 additionalProperties:
-  formFields:
-    - default: 40202
-      edit: true
-      envKey: PANEL_APP_PORT_HTTP
-      labelEn: Port
-      labelZh: 端口
-      required: true
-      rule: paramPort
-      type: number
+    formFields:
+        - default: 4567
+          edit: true
+          envKey: PANEL_APP_PORT_HTTP
+          labelEn: Port
+          labelZh: 端口
+          required: true
+          rule: paramPort
+          type: number
+        - default: "example.com"
+          edit: true
+          envKey: DOMAIN
+          labelEn: Domain
+          labelZh: 域名
+          required: true
+          rule: paramExtUrl
+          type: text
+        - default: "MongoDB"
+          edit: true
+          envKey: DATABASE
+          labelEn: Database
+          labelZh: 数据库
+          required: true
+          type: select
+          values:
+            - label: MongoDB
+              value: "mongo"
+            - label: Redis
+              value: "redis"
+        - default: "mongo"
+          edit: true
+          envKey: DB_HOST
+          labelEn: Database Host
+          labelZh: 主机地址
+          required: true
+          type: text          
+        - default: "27017"
+          edit: true
+          envKey: DB_PORT
+          labelEn: Database Port
+          labelZh: 数据库端口
+          required: true
+          type: text  
+        - default: ""
+          edit: true
+          envKey: DB_USER
+          labelEn: Database User
+          labelZh: 数据库用户
+          required: true
+          type: text  
+        - default: ""
+          edit: true
+          envKey: DB_PASSWORD
+          labelEn: Database Password
+          labelZh: 数据库密码
+          required: true
+          type: text
+        - default: "nodebb"
+          edit: true
+          envKey: DB_NAME
+          labelEn: Database Name
+          labelZh: 数据库名称
+          required: true
+          type: text

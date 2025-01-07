@@ -1,14 +1,26 @@
+version: '3.8'
 services:
   nodebb:
     container_name: ${CONTAINER_NAME}
+    image: elestio/nodebb:2.8
     restart: always
     networks:
       - 1panel-network
+    environment:
+      URL: "https://${DOMAIN}"
+      DATABASE: ${DATABASE}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    volumes:
+      - ./data/nodebb-uploads:/usr/src/app/public/uploads
+      # - ./nodebb-config/config.json:/usr/src/app/config.json
+      - ./data/entrypoint.sh:/usr/src/app/entrypoint.sh
+      - ./data/nodebb-config/config.json:/usr/src/app/setup.json
     ports:
       - "${PANEL_APP_PORT_HTTP}:4567"
-    volumes:
-      - ./data:/usr/src/app/public/uploads
-    image: nodebb/docker:2.8
     labels:  
       createdBy: "Apps"
     
