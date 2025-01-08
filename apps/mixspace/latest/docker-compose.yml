@@ -23,39 +23,43 @@ services:
       timeout: 30s
       retries: 5
       start_period: 30s
-    depends_on:
-      - mongo
-      - redis
-    links:
-      - mongo
-      - redis
+    # depends_on:
+    #   - mongo
+    #   - redis
+    # links:
+    #   - mongo
+    #   - redis
     labels:  
       createdBy: "Apps" 
 
-  mongo:
-    container_name: ${CONTAINER_NAME}-mongo
-    image: mongo
-    volumes:
-      - ./data/db:/data/db
-    networks:
-      - mixspace-network
-    restart: always
-    labels:  
-      createdBy: "Apps" 
+  # mongo:
+  #   container_name: ${CONTAINER_NAME}-mongo
+  #   image: mongo
+  #   volumes:
+  #     - ./data/db:/data/db
+  #   networks:
+  #     - mixspace-network
+  #   restart: always
+  #   labels:  
+  #     createdBy: "Apps" 
 
-  redis:
-    image: redis
-    container_name: ${CONTAINER_NAME}-redis
-    networks:
-      - mixspace-network
-    restart: always
-    labels:  
-      createdBy: "Apps" 
+  # redis:
+  #   image: redis
+  #   container_name: ${CONTAINER_NAME}-redis
+  #   networks:
+  #     - mixspace-network
+  #   restart: always
+  #   labels:  
+  #     createdBy: "Apps" 
 
-networks:
-  mixspace-network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${SUBNET_PREFIX}.0/16
+# networks:
+#   mixspace-network:
+#     driver: bridge
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: ${SUBNET_PREFIX}.0/16
+
+networks:  
+  1panel-network:  
+    external: true
