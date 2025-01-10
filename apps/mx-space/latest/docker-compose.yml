@@ -1,5 +1,5 @@
 services:
-  mixspace:
+  mx-space:
     container_name: ${CONTAINER_NAME}
     image: innei/mx-server:latest
     command: bash ./docker-run.sh
