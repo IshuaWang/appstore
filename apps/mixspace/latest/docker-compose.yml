@@ -6,6 +6,14 @@ services:
     environment:
       - TZ=${TIME_ZONE}
       - NODE_ENV=production
+      - DB_COLLECTION_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}/${REDIS_DB_NAME}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
       - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
       - JWT_SECRET=${JWT_SECRET}
       - ENCRYPT_KEY=${ENCRYPT_KEY}
@@ -15,7 +23,7 @@ services:
     ports:
       - '${PANEL_APP_PORT_HTTP}:2333'
     networks:
-      - mixspace-network
+      - 1panel-network
     restart: always
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://127.0.0.1:2333/api/v2/ping']
@@ -23,42 +31,8 @@ services:
       timeout: 30s
       retries: 5
       start_period: 30s
-    # depends_on:
-    #   - mongo
-    #   - redis
-    # links:
-    #   - mongo
-    #   - redis
     labels:  
       createdBy: "Apps" 
-
-  # mongo:
-  #   container_name: ${CONTAINER_NAME}-mongo
-  #   image: mongo
-  #   volumes:
-  #     - ./data/db:/data/db
-  #   networks:
-  #     - mixspace-network
-  #   restart: always
-  #   labels:  
-  #     createdBy: "Apps" 
-
-  # redis:
-  #   image: redis
-  #   container_name: ${CONTAINER_NAME}-redis
-  #   networks:
-  #     - mixspace-network
-  #   restart: always
-  #   labels:  
-  #     createdBy: "Apps" 
-
-# networks:
-#   mixspace-network:
-#     driver: bridge
-#     ipam:
-#       driver: default
-#       config:
-#         - subnet: ${SUBNET_PREFIX}.0/16
 
 networks:  
   1panel-network:  

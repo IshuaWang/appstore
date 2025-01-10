@@ -15,6 +15,74 @@ additionalProperties:
       labelZh: 被允许的域名 (多个使用英文逗号分割)
       required: true
       type: text
+    - default: "mongodb"
+      edit: true
+      envKey: DB_HOST
+      key: mongodb
+      labelEn: Database Service
+      labelZh: 数据库服务
+      required: true
+      type: service
+    - default: 27017
+      edit: true
+      envKey: DB_PORT
+      labelEn: Database Port
+      labelZh: 数据库端口
+      required: false
+      rule: paramPort
+      type: number
+    - default: "mx-space"
+      edit: true
+      envKey: DB_NAME
+      labelEn: Database Name
+      labelZh: 数据库名
+      required: true
+      rule: paramCommon
+      type: text
+    - default: "mx-space"
+      edit: true
+      envKey: DB_USER
+      labelEn: Database User Name
+      labelZh: 数据库用户名
+      required: true
+      rule: paramCommon
+      type: text
+    - default: ""
+      edit: true
+      envKey: DB_PASSWORD
+      labelEn: Database User Password
+      labelZh: 数据库密码
+      required: true
+      rule: paramCommon
+      type: password
+    - default: ""
+      edit: true
+      envKey: REDIS_HOST
+      key: redis
+      labelEn: Redis Service
+      labelZh: 缓存服务
+      required: true
+      type: service
+    - default: ""
+      envKey: REDIS_PASSWORD
+      labelEn: Redis Service Password
+      labelZh: 缓存密码
+      required: true
+      type: password
+    - default: 6379
+      edit: true
+      envKey: REDIS_PORT
+      labelEn: Redis Port
+      labelZh: Redis端口
+      required: false
+      type: number
+    - default: 0
+      edit: true
+      envKey: REDIS_DB_NAME
+      labelEn: Redis Database Name
+      labelZh: Redis数据库名
+      required: false
+      type: number
     - default: Np2qgqtiUayA857a
       edit: true
       envKey: JWT_SECRET
@@ -43,12 +111,5 @@ additionalProperties:
       envKey: TIME_ZONE
       labelEn: Time zone
       labelZh: 时区
-      required: true
-      type: text
-    - default: 172.19.0
-      edit: true
-      envKey: SUBNET_PREFIX
-      labelEn: New docker network subnet prefix
-      labelZh: 新 docker 网络子网前缀
       required: true
       type: text
